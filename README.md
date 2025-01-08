@@ -30,20 +30,40 @@ Projekt temelji na **mikrostoritveni arhitekturi**, kjer vsaka mikrostoritev opr
   - `POST /login` – Prijava uporabnika in generiranje JWT.
   - `GET /profile/:id` – Pridobitev podatkov o uporabniku.
 
-#### **2. Event Service (Servis za dogodke)**
+#### **2. Event Service (Servis za dogodke) -----> NINA**
 - Ustvarjanje, urejanje in brisanje dogodkov.
 - Pridobivanje seznama dogodkov s filtriranjem.
 - **Primer API-jev:**
   - `POST /events` – Ustvarjanje dogodka.
   - `GET /events` – Pridobivanje seznama dogodkov.
   - `PUT /events/:id` – Posodobitev dogodka.
+  - `DELETE /events/:id` – Brisanje dogodka po id.
 
-#### **3. Reservation Service (Servis za rezervacije)**
+  - `POST  /events/:id/tickets` – Dodajanje razpoložljivih kart za obstoječ dogodek.
+  - `GET  /events/location/:location` – Pridobi dogodke na določeni lokaciji.
+  - `PUT  /events/:id/cancel` – Označi dogodek kot preklican.
+  - `DELETE /events/older-than/:date` – Izbriše vse dogodke, ki so se zgodili pred določenim datumom.
+
+
+#### **3. Reservation Service (Servis za rezervacije) -----> NINA**
 - Upravljanje rezervacij in nakupov kart.
 - Evidenca razpoložljivih kart.
 - **Primer API-jev:**
-  - `POST /reservations` – Rezervacija kart za dogodek.
-  - `GET /reservations/:userId` – Pridobivanje rezervacij uporabnika.
+  - `POST /reservations` – Ustvarjanje nove rezervacije za določen dogodek..
+  - `GET /reservations/:userId` – Pridobivanje vseh rezervacij določenega uporabnika.
+  - `PUT  /reservations/:id: Posodobitev obstoječe rezervacije (npr. sprememba števila kart).
+  - `DELETE /reservations/:id: Brisanje rezervacije.
+
+  - `POST  /reservations/:id/payment` – Dodajanje več rezervacij naenkrat.
+  - `GET  /reservations/event/:eventId` – Pridobi vse rezervacije za določen dogodek.
+  - `PUT  /reservations/:id/confirm` – Potrdi rezervacijo.
+  - `DELETE  /reservations/older-than/:date` –Izbriše vse rezervacije, ki so bile narejene pred določenim datumom.
+
+
+
+
+
+
 
 #### **4. Search Service (Iskalnik dogodkov)**
 - Uporabniški vmesnik omogoča vnos lokacije in prikaz dogodkov.
